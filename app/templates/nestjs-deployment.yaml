@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.nestjs.deployment.name }}
+  labels:
+    app: {{ .Values.nestjs.deployment.name }}
+spec:
+  replicas: {{ .Values.nestjs.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.nestjs.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.nestjs.deployment.name }}
+    spec:
+      containers:
+      - name: {{ .Values.nestjs.deployment.name }}
+        image: {{ .Values.nestjs.deployment.image }}
+        env:
+        {{- range .Values.nestjs.deployment.variables}}
+        - name: {{ . }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ $.Values.nestjs.secret.name }} #to go back to the root 
+              key: {{ . }}
+        {{- end}}
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        ports:
+        - containerPort: {{ .Values.nestjs.deployment.port }}

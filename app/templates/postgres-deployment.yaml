@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.postgres.deployment.name }}
+  labels:
+    app: {{ .Values.postgres.deployment.name }}
+spec:
+  replicas: {{ .Values.postgres.deployment.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.postgres.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.postgres.deployment.name }}
+    spec:
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: {{ .Values.postgres.pvc.name }}
+      containers:
+      - name: {{ .Values.postgres.deployment.name }}
+        image: {{ .Values.postgres.deployment.image }}
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+        env:
+        {{- range .Values.postgres.deployment.variables}}
+        - name: {{ . }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ $.Values.postgres.secret.name }} #to go back to the root 
+              key: {{ . }}
+        {{- end}}
+        ports:
+        - containerPort: {{ .Values.postgres.deployment.port }}
