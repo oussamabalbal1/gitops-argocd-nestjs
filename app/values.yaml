@@ -40,7 +40,7 @@ postgres:
   deployment:     
     name: postgres-app
     image: postgres:latest
-    replicas: 3
+    replicas: 1
     port: 5432
     variables:
       - POSTGRES_USER
