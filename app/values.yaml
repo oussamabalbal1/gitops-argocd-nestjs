@@ -7,20 +7,19 @@ ingress:
         service:
           name: nestjs-service
           port_number: 80
-
 nestjs:
   deployment:
     name: nestjs-app
-    image: workat00/your-nestjs-app:latest
+    image: workat00/your-nestjs-app:OUSSAMAGITLAB
     replicas: 3
     port: 3000
     variables:
-    - DB_HOST
-    - DB_PORT
-    - DB_USERNAME
-    - DB_PASSWORD
-    - DB_NAME
-    - DB_SYNCHRONIZE
+      - DB_HOST
+      - DB_PORT
+      - DB_USERNAME
+      - DB_PASSWORD
+      - DB_NAME
+      - DB_SYNCHRONIZE
   secret:
     name: nestjs-secret
     data:
@@ -28,16 +27,15 @@ nestjs:
       DB_PORT: "5432"
       DB_USERNAME: oussama
       DB_PASSWORD: oussama
-      DB_NAME: oussama  
+      DB_NAME: oussama
       DB_SYNCHRONIZE: "true"
   service:
     name: nestjs-service
     type: ClusterIP
     port: 80
     target_port: 3000
-
 postgres:
-  deployment:     
+  deployment:
     name: postgres-app
     image: postgres:latest
     replicas: 1
@@ -63,5 +61,3 @@ postgres:
     type: ClusterIP
     port: 5432
     target_port: 5432
-
-
