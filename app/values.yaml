@@ -11,7 +11,7 @@ nestjs:
   deployment:
     name: nestjs-app
     image: oussamabal/devops-project:d3e69c74
-    replicas: 20
+    replicas: 2
     port: 3000
     variables:
       - DB_HOST
