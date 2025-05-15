@@ -25,3 +25,4 @@ spec:
             port:
               number: {{ .backend.service.port_number }}
       {{- end}}
+
