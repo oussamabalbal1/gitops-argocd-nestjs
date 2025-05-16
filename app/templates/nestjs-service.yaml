@@ -8,5 +8,6 @@ spec:
     app: {{ .Values.nestjs.deployment.name }}
   ports:
   - protocol: TCP
+    name: http
     port: {{ .Values.nestjs.service.port }}      # External port to expose
     targetPort: {{ .Values.nestjs.service.target_port }} # Port on the Pod to forward traffic to
