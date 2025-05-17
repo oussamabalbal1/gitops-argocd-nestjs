@@ -3,8 +3,8 @@ kind: Ingress
 metadata:
   name: {{ .Values.ingress.name }}
   namespace: production
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: hello.381492032511.realhandsonlabs.net
+  # annotations:
+  #   external-dns.alpha.kubernetes.io/hostname: hello.381492032511.realhandsonlabs.net
     # cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -14,7 +14,7 @@ spec:
   #   - hello.381492032511.realhandsonlabs.net
   #   secretName: tls-secret
   rules:
-  - host: hello.381492032511.realhandsonlabs.net
+  - host: #hello.381492032511.realhandsonlabs.net
     http:
       paths:
       {{- range .Values.ingress.paths }}
