@@ -5,11 +5,16 @@ metadata:
   namespace: production
   annotations:
     external-dns.alpha.kubernetes.io/hostname: hello.533267127040.realhandsonlabs.net
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - hello.533267127040.realhandsonlabs.net
+    secretName: tls-secret
   rules:
-  - host:
+  - host: hello.533267127040.realhandsonlabs.net
     http:
       paths:
       {{- range .Values.ingress.paths }}
