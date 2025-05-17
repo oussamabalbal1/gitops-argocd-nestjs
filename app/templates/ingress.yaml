@@ -4,16 +4,16 @@ metadata:
   name: {{ .Values.ingress.name }}
   namespace: production
   annotations:
-    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
-  # tls:
-  # - hosts:
-  #   - hello.533267127040.realhandsonlabs.net
-  #   secretName: tls-secret
+  tls:
+  - hosts:
+    - test.devops-project.kesug.com
+    secretName: tls-secret
   rules:
-  - host: #hello.533267127040.realhandsonlabs.net
+  - host: test.devops-project.kesug.com
     http:
       paths:
       {{- range .Values.ingress.paths }}
