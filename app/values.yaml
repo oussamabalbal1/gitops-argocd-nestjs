@@ -1,6 +1,6 @@
 
 ingress:
-  host: app.590183830942.realhandsonlabs.net
+  host: app.339713140038.realhandsonlabs.net
   name: nestjs-ingress
   paths:
     - backend:
@@ -11,7 +11,7 @@ ingress:
 nestjs:
   deployment:
     name: nestjs-app
-    image: oussamabal/devops-project:648c8ead
+    image: oussamabal/devops-project:d9ed9b08
     replicas: 6
     port: 3000
     variables:
