@@ -24,7 +24,7 @@ nestjs:
   secret:
     name: nestjs-secret
     data:
-      DB_HOST: postgres-service #postgres service name 
+      DB_HOST: postgr23r23res-service #postgres service name 
       DB_PORT: "5432"
       DB_USERNAME: oussama
       DB_PASSWORD: oussama
