@@ -38,7 +38,7 @@ nestjs:
 postgres:
   deployment:
     name: postgres-app
-    image: postgresxxx:latest
+    image: postgres:latest
     replicas: 1
     port: 5432
     variables:
