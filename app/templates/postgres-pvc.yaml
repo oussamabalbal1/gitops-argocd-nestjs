@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.postgres.pvc.name }}
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany  # Allows multiple Pods to read/write
   resources:
     requests:
       storage: {{ .Values.postgres.pvc.storage }}
