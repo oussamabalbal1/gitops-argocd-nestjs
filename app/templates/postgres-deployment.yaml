@@ -1,31 +1,32 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ .Values.postgres.deployment.name }}
+  name: {{ .Values.postgres.statefulset.name }}
   labels:
-    app: {{ .Values.postgres.deployment.name }}
+    app: {{ .Values.postgres.statefulset.name }}
 spec:
-  replicas: {{ .Values.postgres.deployment.replicas }}
+  serviceName: {{ .Values.postgres.statefulset.servicename }}
+  replicas: {{ .Values.postgres.statefulset.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.postgres.deployment.name }}
+      app: {{ .Values.postgres.statefulset.name }}
   template:
     metadata:
       labels:
-        app: {{ .Values.postgres.deployment.name }}
+        app: {{ .Values.postgres.statefulset.name }}
     spec:
       volumes:
       - name: postgres-data
         persistentVolumeClaim:
           claimName: {{ .Values.postgres.pvc.name }}
       containers:
-      - name: {{ .Values.postgres.deployment.name }}
-        image: {{ .Values.postgres.deployment.image }}
+      - name: {{ .Values.postgres.statefulset.name }}
+        image: {{ .Values.postgres.statefulset.image }}
         volumeMounts:
         - name: postgres-data
           mountPath: /var/lib/postgresql/data
         env:
-        {{- range .Values.postgres.deployment.variables}}
+        {{- range .Values.postgres.statefulset.variables}}
         - name: {{ . }}
           valueFrom:
             secretKeyRef:
@@ -33,14 +34,20 @@ spec:
               key: {{ . }}
         {{- end}}
         ports:
-        - containerPort: {{ .Values.postgres.deployment.port }}
-
-      - name: postgres-exporter
-        image: prometheuscommunity/postgres-exporter
+        - containerPort: {{ .Values.postgres.statefulset.port }}
+      - name: {{ .Values.postgres.statefulset.sidecar.name }}
+        image: {{ .Values.postgres.statefulset.sidecar.image }}
         env:
             - name: DATA_SOURCE_NAME
               value: "postgresql://oussama:oussama@localhost:5432/oussama?sslmode=disable"
-            - name: PG_EXPORTER_EXTEND_QUERY_PATH
-              value: /etc/postgres_exporter/queries.yaml
         ports:
-            - containerPort: 9187
+            - containerPort: {{ .Values.postgres.statefulset.sidecar.9187 }}
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Values.postgres.pvc.name }}
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: {{ .Values.postgres.pvc.storageclass }}
+      resources:
+        requests:
+          storage: {{ .Values.postgres.pvc.storage }}

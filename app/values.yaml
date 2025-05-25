@@ -24,7 +24,7 @@ nestjs:
   secret:
     name: nestjs-secret
     data:
-      DB_HOST: postgres-service #postgres service name 
+      DB_HOST: postgres-0.postgres.default.svc.cluster.local
       DB_PORT: "5432"
       DB_USERNAME: oussama
       DB_PASSWORD: oussama
@@ -35,9 +35,13 @@ nestjs:
     type: ClusterIP
     port: 80
     target_port: 3000
+
+
+    
 postgres:
-  deployment:
+  statefulset:
     name: postgres-app
+    servicename: postgres
     image: postgres:latest
     replicas: 1
     port: 5432
@@ -46,10 +50,14 @@ postgres:
       - POSTGRES_PASSWORD
       - POSTGRES_DB
       - PGDATA
+    sidecar:
+      name: postgres-exporter
+      image: prometheuscommunity/postgres-exporter
+      port: 9187
   pvc:
     name: postgres-pvc
     storage: 10Gi
-    storage_class: gp2
+    storageclass: gp2
   secret:
     name: postgres-secret
     data:
@@ -59,6 +67,5 @@ postgres:
       PGDATA: "/var/lib/postgresql/data/pgdata"
   service:
     name: postgres-service
-    type: ClusterIP
     port: 5432
     target_port: 5432

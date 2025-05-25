@@ -5,7 +5,7 @@ metadata:
   labels:
     app: postgres
 spec:
-  type: {{ .Values.postgres.service.type }}
+  clusterIP: None  # Required for stable network ID in StatefulSet
   selector:
     app: {{ .Values.postgres.deployment.name }}
   ports:
@@ -13,7 +13,6 @@ spec:
     protocol: TCP
     port: {{ .Values.postgres.service.port }}
     targetPort: {{ .Values.postgres.service.target_port }}
-    
   - name: metrics
     port: 9187
     targetPort: 9187
