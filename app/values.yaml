@@ -50,6 +50,7 @@ postgres:
       name: postgres-exporter
       image: prometheuscommunity/postgres-exporter
       port: 9187
+      target_port: 9187
   pvc:
     name: postgres-pvc
     storage: 10Gi

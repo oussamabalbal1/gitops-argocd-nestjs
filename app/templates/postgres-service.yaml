@@ -14,5 +14,5 @@ spec:
     port: {{ .Values.postgres.service.port }}
     targetPort: {{ .Values.postgres.service.target_port }}
   - name: metrics
-    port: 9187
-    targetPort: 9187
+    port: {{ .Values.postgres.statefulset.sidecar.port }}
+    targetPort: {{ .Values.postgres.statefulset.sidecar.target_port }}
