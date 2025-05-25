@@ -3,8 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Values.postgres.pvc.name }}
 spec:
-  accessModes:
-    - ReadWriteMany  # Allows multiple Pods to read/write
+  accessModes: ReadWriteOnce
   resources:
     requests:
       storage: {{ .Values.postgres.pvc.storage }}
