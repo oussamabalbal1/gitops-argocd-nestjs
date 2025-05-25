@@ -41,7 +41,7 @@ spec:
             - name: DATA_SOURCE_NAME
               value: "postgresql://oussama:oussama@localhost:5432/oussama?sslmode=disable"
         ports:
-            - containerPort: {{ .Values.postgres.statefulset.sidecar.9187 }}
+            - containerPort: {{ .Values.postgres.statefulset.sidecar.port }}
   volumeClaimTemplates:
   - metadata:
       name: {{ .Values.postgres.pvc.name }}
