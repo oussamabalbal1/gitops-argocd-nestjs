@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ .Values.postgres.statefulset.name }}
 spec:
-  serviceName: {{ .Values.postgres.statefulset.servicename }}
+  serviceName: {{ .Values.postgres.service.name }}
   replicas: {{ .Values.postgres.statefulset.replicas }}
   selector:
     matchLabels:
