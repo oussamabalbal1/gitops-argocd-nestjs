@@ -42,12 +42,12 @@ spec:
               value: "postgresql://oussama:oussama@localhost:5432/oussama?sslmode=disable"
         ports:
             - containerPort: {{ .Values.postgres.statefulset.sidecar.port }}
-  volumeClaimTemplates:
-  - metadata:
-      name: {{ .Values.postgres.pvc.name }}
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: {{ .Values.postgres.pvc.storageclass }}
-      resources:
-        requests:
-          storage: {{ .Values.postgres.pvc.storage }}
+  # volumeClaimTemplates:
+  # - metadata:
+  #     name: {{ .Values.postgres.pvc.name }}
+  #   spec:
+  #     accessModes: ["ReadWriteOnce"]
+  #     storageClassName: {{ .Values.postgres.pvc.storageclass }}
+  #     resources:
+  #       requests:
+  #         storage: {{ .Values.postgres.pvc.storage }}
