@@ -41,7 +41,6 @@ nestjs:
 postgres:
   statefulset:
     name: postgres-app
-    servicename: postgres
     image: postgres:latest
     replicas: 1
     port: 5432
