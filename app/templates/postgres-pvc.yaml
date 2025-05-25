@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: {{ .Values.postgres.pvc.name }}
 spec:
-  accessModes: ReadWriteOnce
+  accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: {{ .Values.postgres.pvc.storage }}
