@@ -24,7 +24,7 @@ nestjs:
   secret:
     name: nestjs-secret
     data:
-      DB_HOST: postgres-0.postgres.default.svc.cluster.local
+      DB_HOST: postgres-app-0.postgres-service.production.svc.cluster.local #<pod-name>.<headless-service-name>.<namespace>.svc.cluster.local
       DB_PORT: "5432"
       DB_USERNAME: oussama
       DB_PASSWORD: oussama
