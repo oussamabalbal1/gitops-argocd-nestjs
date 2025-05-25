@@ -1,6 +1,6 @@
 
 ingress:
-  host: app.590184068436.realhandsonlabs.net
+  host: app.471112537132.realhandsonlabs.net
   name: nestjs-ingress
   paths:
     - backend:
@@ -11,7 +11,7 @@ ingress:
 nestjs:
   deployment:
     name: nestjs-app
-    image: oussamabal/devops-project:2bd624f4
+    image: oussamabal/devops-project:0ee6c5ba
     replicas: 6
     port: 3000
     variables:
@@ -35,9 +35,6 @@ nestjs:
     type: ClusterIP
     port: 80
     target_port: 3000
-
-
-    
 postgres:
   statefulset:
     name: postgres-app
