@@ -21,8 +21,9 @@ spec:
       - path: {{ .backend.path }}
         pathType: Prefix
         backend:
+          # nestjs-app
           service:
-            name: nestjs-app     # ← this must match your Flagger Canary `targetRef` service -- {{ .backend.service.name | quote}}
+            name: {{ .backend.service.name | quote}}
             port:
               number: {{ .backend.service.port_number }}
       {{- end}}
