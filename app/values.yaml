@@ -11,7 +11,7 @@ ingress:
 nestjs:
   deployment:
     name: nestjs-app
-    image: oussamabal/devops-project:72db5e96
+    image: oussamabal/devops-project:d9ed9b08
     replicas: 2
     port: 3000
     variables:
