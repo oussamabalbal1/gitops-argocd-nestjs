@@ -21,9 +21,9 @@ spec:
       - path: {{ .backend.path }}
         pathType: Prefix
         backend:
-          # nestjs-app
+          # {{ .backend.service.name | quote}}
           service:
-            name: {{ .backend.service.name | quote}}
+            name: nestjs-app
             port:
               number: {{ .backend.service.port_number }}
       {{- end}}
