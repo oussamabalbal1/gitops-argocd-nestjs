@@ -20,7 +20,7 @@ spec:
       {{- range .Values.ingress.paths }}
       - path: {{ .backend.path }}
         pathType: Prefix
-        backend:
+        nestjs-app:
           service:
             name: {{ .backend.service.name | quote}}
             port:
