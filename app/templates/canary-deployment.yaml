@@ -21,7 +21,7 @@ spec:
     interval: 15s
     threshold: 10
     maxWeight: 80
-    stepWeight: 10
+    stepWeight: 20
     metrics:
     - name: error-rate
       templateRef:
@@ -35,4 +35,4 @@ spec:
       url: http://flagger-loadtester.production/
       timeout: 5s
       metadata:
-        cmd: "hey -z 1m -q 6 -c 2 https://app.905418304539.realhandsonlabs.net/"
+        cmd: "hey -z 1m -q 6 -c 2 https://{{ .Values.ingress.host }}"
