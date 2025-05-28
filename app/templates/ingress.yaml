@@ -25,7 +25,7 @@ spec:
         backend:
           # {{ .backend.service.name | quote}}
           service:
-            name: nestjs-app
+            name: {{ .backend.service.name | quote}} #nestjs-app
             port:
               number: {{ .backend.service.port_number }}
       {{- end}}
