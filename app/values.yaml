@@ -3,7 +3,7 @@ canary:
   loadtest_url: http://flagger-loadtester.flagger-system/ # <flagger-service>.<namespace>
   namespace:
 ingress:
-  host: app.339712849641.realhandsonlabs.net
+  host: app.211125710701.realhandsonlabs.net
   name: nestjs-ingress
   paths:
     - backend:
