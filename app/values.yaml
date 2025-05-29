@@ -1,6 +1,6 @@
 
 ingress:
-  host: app.767397887597.realhandsonlabs.net
+  host: app.975050296408.realhandsonlabs.net
   name: nestjs-ingress
   paths:
     - backend:
