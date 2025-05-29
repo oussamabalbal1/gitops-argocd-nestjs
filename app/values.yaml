@@ -1,7 +1,7 @@
 canary:
   enable: true
   loadtest_url: http://flagger-loadtester.flagger-system/ # <flagger-service>.<namespace>
-  namespace: 
+  namespace:
 ingress:
   host: app.975050296408.realhandsonlabs.net
   name: nestjs-ingress
@@ -14,7 +14,7 @@ ingress:
 nestjs:
   deployment:
     name: nestjs-app
-    image: oussamabal/devops-project:1f873495
+    image: oussamabal/devops-project:9b806e86
     replicas: 5
     port: 3000
     variables:
