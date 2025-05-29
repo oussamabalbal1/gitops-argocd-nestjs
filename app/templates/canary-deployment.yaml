@@ -32,7 +32,7 @@ spec:
       interval: 30s
     webhooks:
     - name: load-test
-      url: http://flagger-loadtester.flagger-system/
+      url: {{ .Values.canary.loadtest_url }}
       timeout: 5s
       metadata:
         cmd: "hey -z 1m -q 6 -c 2 https://{{ .Values.ingress.host }}"
