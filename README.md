@@ -61,11 +61,11 @@ You can deploy this application using the Helm chart located in this repository.
     Use the `helm install` command to deploy the application. You must provide a release name and specify the namespace where you want to deploy it.
 
     ```bash
-    helm install my-app ./helm-chart --namespace my-namespace --create-namespace
+    helm install my-app ./app --namespace production --create-namespace
     ```
     * `my-app`: This is the release name for your deployment.
-    * `./helm-chart`: This should be the path to the directory containing the Helm chart.
-    * `--namespace my-namespace`: Specifies the target namespace.
+    * `./app`: This should be the path to the directory containing the Helm chart.
+    * `--namespace `: Specifies the target namespace.
     * `--create-namespace`: This flag will create the namespace if it doesn't already exist.
 
 ---
