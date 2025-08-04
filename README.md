@@ -18,7 +18,7 @@ Before deploying this application, ensure the following components are installed
 ---
 
 ## 🚀 Application Overview
-<img src="./K8S-NEST-ARCH-DIAG.png" alt="Alt Text" width="70%"  />
+<img src="./K8S-NEST-ARCH-DIAG.png" alt="Alt Text" width="100%"  />
 
 The application consists of several core components that work together to provide a resilient and observable system.
 
